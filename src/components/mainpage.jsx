@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,22 +12,22 @@ function MainPage() {
   const navigate = useNavigate();
 
   const cardData = [
-    { id: 1, title: "Halo Infinite", genre: "Action", publisher: "343 Studios", imgSrc: "halo.png" },
-    { id: 2, title: "Halo MCC", genre: "Action", publisher: "343 Studios", imgSrc: "halomcc.png" },
-    { id: 3, title: "Hollow Knight", genre: "Metroidvania", publisher: "Team Cherry", imgSrc: "hollow.png" },
-    { id: 4, title: "Dark Souls 3", genre: "Souls Like", publisher: "From Software", imgSrc: "darksouls3.png" },
-    { id: 5, title: "Dead Space Remake", genre: "Horror", publisher: "EA", imgSrc: "deadspace.png" },
-    { id: 6, title: "Terraria", genre: "Creative", publisher: "505 Studios", imgSrc: "terraria.png" },
-    { id: 7, title: "Concord", genre: "Shooter", publisher: "Sony Interactive", imgSrc: "concord.png" },
-    { id: 8, title: "Elden Ring", genre: "Souls Like", publisher: "From Software", imgSrc: "eldenring.png" },
-    { id: 9, title: "Black Ops 6", genre: "Shooter", publisher: "Treyarch", imgSrc: "bo6.png" },
-    { id: 10, title: "Mario Party", genre: "RPG", publisher: "Nintendo", imgSrc: "marioparty.png" },
-    { id: 11, title: "Forza Horizon 4", genre: "Racing", publisher: "Playground Games", imgSrc: "fh4.png" },
-    { id: 12, title: "Forza Horizon 5", genre: "Racing", publisher: "Playground Games", imgSrc: "fh5.png" },
-    { id: 13, title: "Uncharted 4", genre: "Adventure", publisher: "Naughty Dog", imgSrc: "Uncharted4.png" },
-    { id: 14, title: "God Of War (2016)", genre: "Action", publisher: "Santa Monica Studio", imgSrc: "godofwar.png" },
-    { id: 15, title: "BloodBorne", genre: "Souls Like", publisher: "From Software", imgSrc: "bloodborne.png" },
-    { id: 16, title: "Sekiro", genre: "Souls Like", publisher: "From Software", imgSrc: "sekiro.png" },
+    { id: 1, title: "Halo Infinite", genre: "Action", publisher: "343 Studios", imgSrc: "/halo.png" },
+    { id: 2, title: "Halo MCC", genre: "Action", publisher: "343 Studios", imgSrc: "/halomcc.png" },
+    { id: 3, title: "Hollow Knight", genre: "Metroidvania", publisher: "Team Cherry", imgSrc: "/hollow.png" },
+    { id: 4, title: "Dark Souls 3", genre: "Souls Like", publisher: "From Software", imgSrc: "/darksouls3.png" },
+    { id: 5, title: "Dead Space Remake", genre: "Horror", publisher: "EA", imgSrc: "/deadspace.png" },
+    { id: 6, title: "Terraria", genre: "Creative", publisher: "505 Studios", imgSrc: "/terraria.png" },
+    { id: 7, title: "Concord", genre: "Shooter", publisher: "Sony Interactive", imgSrc: "/concord.png" },
+    { id: 8, title: "Elden Ring", genre: "Souls Like", publisher: "From Software", imgSrc: "/eldenring.png" },
+    { id: 9, title: "Black Ops 6", genre: "Shooter", publisher: "Treyarch", imgSrc: "/bo6.png" },
+    { id: 10, title: "Mario Party", genre: "RPG", publisher: "Nintendo", imgSrc: "/marioparty.png" },
+    { id: 11, title: "Forza Horizon 4", genre: "Racing", publisher: "Playground Games", imgSrc: "/fh4.png" },
+    { id: 12, title: "Forza Horizon 5", genre: "Racing", publisher: "Playground Games", imgSrc: "/fh5.png" },
+    { id: 13, title: "Uncharted 4", genre: "Adventure", publisher: "Naughty Dog", imgSrc: "/Uncharted4.png" },
+    { id: 14, title: "God Of War (2016)", genre: "Action", publisher: "Santa Monica Studio", imgSrc: "/godofwar.png" },
+    { id: 15, title: "BloodBorne", genre: "Souls Like", publisher: "From Software", imgSrc: "/bloodborne.png" },
+    { id: 16, title: "Sekiro", genre: "Souls Like", publisher: "From Software", imgSrc: "/sekiro.png" },
   ];
 
   // Filtered data based on search query
@@ -60,12 +60,17 @@ function MainPage() {
   // Handle review submission (without navigation)
   const handleReviewSubmit = () => {
     if (review.trim() !== "") {
-      // Retrieve existing reviews from localStorage
-      const storedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      // Retrieve existing reviews from localStorage in browser only
+      let storedReviews = [];
+      if (typeof window !== "undefined") {
+        storedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      }
       // Add the new review to the array
       const newReviews = [...storedReviews, review];
       // Save the updated array back to localStorage
-      localStorage.setItem("reviews", JSON.stringify(newReviews));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("reviews", JSON.stringify(newReviews));
+      }
       // Clear the review input field
       setReview("");
     }

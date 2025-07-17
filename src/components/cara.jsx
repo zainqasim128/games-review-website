@@ -8,7 +8,7 @@ function CarouselFadeExample() {
           className="d-block w-100"
           width="250px"
           height="640px"
-          src="/doomlandscape.jpg" // Absolute path to public folder
+          src="/doomlandscape.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -21,7 +21,7 @@ function CarouselFadeExample() {
           className="d-block w-100"
           width="250px"
           height="640px"
-          src="/es6.jpg" // Absolute path to public folder
+          src="/es6.jpg"
           alt="Second slide"
         />
         <Carousel.Caption>
@@ -34,7 +34,7 @@ function CarouselFadeExample() {
           className="d-block w-100"
           width="250px"
           height="640px"
-          src="cyberpunk.jpg" // Absolute path to public folder
+          src="/cyberpunk.jpg"
           alt="Third slide"
         />
         <Carousel.Caption>

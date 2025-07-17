@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainPage from "./components/MainPage";
+import MainPage from "./components/mainpage";
 import BasicExample from "./components/navbar";
 import NewsPage from "./components/news";
 import CarouselFadeExample from "./components/cara";
 import Footer from "./components/footer"; // Import the Footer component
-import ReviewsPage from "./components/ReviewsPage"; // Import ReviewsPage component
+import ReviewsPage from "./components/reviewspage"; // Import ReviewsPage component
 
 function App() {
   return (

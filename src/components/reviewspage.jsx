@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Reviews.css";
 
 function ReviewsPage() {
-  // Retrieve the reviews from localStorage
-  const storedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  const [reviews, setReviews] = useState(storedReviews);
+  // State for reviews
+  const [reviews, setReviews] = useState([]);
+
+  // Retrieve the reviews from localStorage in useEffect
+  useEffect(() => {
+    const storedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    setReviews(storedReviews);
+  }, []);
 
   // Function to remove a review
   const handleRemoveReview = (index) => {
